@@ -54,7 +54,7 @@ Authorization: CBX-SIMPLE-TOKEN Token=<token>
 Example using curl:
 
 ```
-curl -H "Authorization: CBX-SIMPLE-TOKEN Token=e8ebf927234ec5dfc4cf66edbbe1382e886142fv https://api.colourbox.com/whoami"
+curl -H "Authorization: CBX-SIMPLE-TOKEN Token=e8ebf927234ec5dfc4cf66edbbe1382e886142f" https://api.colourbox.com/whoami
 ```
 
 Running the above curl command will give you back information about your user. 
