@@ -2,7 +2,7 @@
 layout: page
 title: "CDN"
 permalink: /cdn/
-layout: jekyll-theme-minimal
+layout: default
 ---
 
 # CDN documentation
