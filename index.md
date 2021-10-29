@@ -9,11 +9,11 @@ If you do not find what you are looking for, or if you have any technical questi
 If you are searching for more general Skyfish information you can email us with general inquiries at info@colourbox.com.
 
 # Getting Started
-To use the Skyfish API you need to have an API key and secret. To see the key and secret associated with your account visit: https://www.skyfish.com/account/api
+To use the Skyfish API you need to have an API key and secret. To see the key and secret associated with your account visit: [https://www.skyfish.com/account/api](https://www.skyfish.com/account/api)
 If you don't have access to the page or the key/secret are  missing contant your sales representative who can help you set it up. 
 
 Once you have the key and secret you are ready to use the API. First step would be to get authentication up and running. Please see [Authentication](/authentication)
 
 # List of supported SDKs
-- PHP https://github.com/ColourboxDevelopment/SDK-PHP-Skyfish
+- PHP [https://github.com/ColourboxDevelopment/SDK-PHP-Skyfish](https://www.skyfish.com/account/api)
 
