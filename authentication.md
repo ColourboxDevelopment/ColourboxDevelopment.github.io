@@ -15,17 +15,16 @@ If you don't have an API key or secret, please see "Getting Started"
 
 To get a token make a `POST` call to `/authenticate/userpasshmac` with the following parameters: 
 
-========   ===========================
-username   Username of user 
-password   Password for the user
-key        API Key
-ts         Current Unix timestamp 
-hmac       Calculated code (see below)
-========   ===========================
+| Parameter        | Description         
+| ------------- |-------------
+| username    | Username of user 
+| password    | Password for the user
+| key    | API Key
+| ts    | Current Unix timestamp 
+| hmac    | Calculated code (see below)
 
 
 `hmac` should be calculated in the following way: 
-
 
 ```
 HMAC-SHA1(secret, apiKey + ":" + ts)
