@@ -71,4 +71,5 @@ Response:
 ```
 
 **NOTE**
+
 Because creating CDN links goes through our internal queuing system there can be some delay. In case `cdn_urls` is empty even though the file was placed in the CDN folder, wait a few seconds and try again.
