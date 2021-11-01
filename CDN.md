@@ -13,7 +13,7 @@ CDN needs to be configured be it can be used. Please have a look at this [Gettin
 ## Using CDN from the API
 The CDN feature is actually just a "magic" folder. When files are added to it, a CDN link will automatically be generated (and removed again if the file is deleted from the folder). 
 
-The first step is to figure out the id of the CDN folder. Note that a user can be in more than one company, so remember to specify the correct`company-id`. If in doubt what your company ID is, you can reach out to us on api@colourbox.com
+The first step is to figure out the id of the CDN folder. Note that a user can be in more than one company, so remember to specify the correct `company-id`. If in doubt what your company ID is, you can reach out to us on api@colourbox.com
 ```
 curl -H "Authorization: CBX-SIMPLE-TOKEN Token=<token>" https://api.colourbox.com/cdn/<company-id>/company/aliases
 ```
@@ -33,7 +33,7 @@ It will give you something like:
 }
 ```
 
-In this case the ID of the folder is `1337`. The `alias` is part of the URL of any links generated. In this case URLS will be on the format: `https://cdn.skyfish.com/cdn-tutorial/<filename>`
+In this case the ID of the folder is `1337`. The `alias` is part of the URL of any links generated. In this case URLS will be on the format: `https://cdn.skyfish.com/cdn-tutorial/<id>`
 
 ### Generating a CDN link
 Generating a CDN link for a file is as easy as to simply add it to the CDN folder found in the previos section. Assume you want to generate a link for the media with `unique_media_id` of: `42424242`:
