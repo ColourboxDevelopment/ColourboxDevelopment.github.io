@@ -8,7 +8,7 @@ layout: default
 # CDN
 
 ## Getting started
-CDN needs to be configured be it can be used. Please have a look at this [Getting Started page](https://www.skyfish.com/)
+CDN needs to be configured be it can be used. Please have a look at this [Getting Started page](https://www.skyfish.com/help/cdn-links/set-up-domain)
 
 ## Using CDN from the API
 The CDN feature is actually just a "magic" folder. When files are added to it, a CDN link will automatically be generated (and removed again if the file is deleted from the folder). 
