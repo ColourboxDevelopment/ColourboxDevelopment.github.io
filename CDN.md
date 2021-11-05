@@ -59,7 +59,7 @@ Response:
     "media": [
       {
         "cdn_urls": [
-          "https://cdn.skyfish.com/cdn-tutorial/<id>"
+          "https://cdn.skyfish.com/cdn-tutorial/<id>.extension"
         ]
       }
     ],
@@ -70,6 +70,15 @@ Response:
 }
 ```
 
+
 **NOTE**
 
 Because creating CDN links goes through our internal queuing system there can be some delay. In case `cdn_urls` is empty even though the file was placed in the CDN folder, wait a few seconds and try again.
+
+### Changing the underlying file behind a CDN link
+A great feature of the Skyfish CDN is that you can change the underlying file behind a CDN link. This means that after you have generated a link for a file, you can update the link to point to another file inside your Skyfish. One use case could be to use Skyfish CDN to host the header image for your homepage. In case you want to update it, you just update the file behind the link instead of changing the homepage it self. 
+
+Following our example from above, to update the link to point to a new file with unique media id of `1337` use
+```
+CBX_TOKEN=<token> ./repl -XPATCH api.colourbox.com/cdn/<company-id>/alias/cdn-tutorial/<id>/unique_media/<1337>
+```
