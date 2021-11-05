@@ -36,7 +36,7 @@ It will give you something like:
 In this case the ID of the folder is `1337`. The `alias` is part of the URL of any links generated. In this case URLS will be on the format: `https://cdn.skyfish.com/cdn-tutorial/<id>`
 
 ### Generating a CDN link
-Generating a CDN link for a file is as easy as to simply add it to the CDN folder found in the previos section. Assume you want to generate a link for the media with `unique_media_id` of: `42424242`:
+Generating a CDN link for a file is as easy as to simply add it to the CDN folder found in the previos section. Assume you want to generate a link for the media with `unique_media_id` of `42424242`:
 
 ```
 curl -H "Authorization: CBX-SIMPLE-TOKEN Token=<token>" -XPOST https://api.colourbox.com/media/42424242/folder/1337
