@@ -1,6 +1,6 @@
 remote_theme: ColourboxDevelopment/just-the-docs
 title: Colourbox
-
+logo: "sf_cb.png"
 aux_links:
   "List of endpoints":
     - "https://api.skyfish.com"
