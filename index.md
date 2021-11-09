@@ -25,5 +25,5 @@ Once you have the key and secret you are ready to use the API. First step would 
 A list of all supported endpoints can be seen here: [https://api.skyfish.com/](https://api.skyfish.com/)
 
 # List of supported SDKs
-- PHP [https://github.com/ColourboxDevelopment/SDK-PHP-Skyfish](https://www.skyfish.com/account/api)
+- PHP [https://github.com/ColourboxDevelopment/SDK-PHP-Skyfish](https://github.com/ColourboxDevelopment/SDK-PHP-Skyfish)
 
