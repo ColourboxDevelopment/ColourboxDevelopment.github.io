@@ -3,6 +3,7 @@ layout: page
 title: "Authentication"
 permalink: /authentication/
 layout: default
+nav_order: 2
 ---
 
 # Authentication
