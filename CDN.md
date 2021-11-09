@@ -3,6 +3,7 @@ layout: page
 title: "CDN"
 permalink: /cdn/
 layout: default
+nav_order: 3
 ---
 
 # CDN
