@@ -1,2 +1,6 @@
 remote_theme: ColourboxDevelopment/just-the-docs
 title: Colourbox
+
+aux_links:
+  "List of endpoints":
+    - "https://api.skyfish.com"
