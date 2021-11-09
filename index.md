@@ -1,4 +1,4 @@
-# Welcome to Colourbox/Skyfish developer documentation site
+# Introduction
 
 Welcome to the Colourbox/Skyfish Developer Site, where you will find all of the resources you need to create a custom integration between your system and Coloubox/Skfish. This site is a collection all of the developer tools and technical documentation developers need to get the most out of Skyfish.
 
