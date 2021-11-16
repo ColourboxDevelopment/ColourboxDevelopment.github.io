@@ -45,6 +45,8 @@ curl -H "Authorization: CBX-SIMPLE-TOKEN Token=<token>" -XPOST https://api.colou
 
 Once the file is placed in the folder, the file will be queued for CDN link creation. Often the link will be ready within 20 seconds. 
 
+**NOTE** You need full access to both the CDN folder and to at least one of the folders the file is placed in,. 
+
 ### Fetching the CDN link
 All search endpoints supports asking for `cdn_urls` as a return value. To get the CDN link for a specific file, specify the `unique_media_id` as a search paraemter and request `cdn_urls` as a return values:
 
