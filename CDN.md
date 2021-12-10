@@ -102,6 +102,7 @@ curl -H "Authorization: CBX-SIMPLE-TOKEN Token=<token>" -XDELETE api.colourbox.c
 ### Image manipulation on the fly
 Our CDN supports image manipulation on the fly. It works by appending query parameters to the generated CDN link. 
 We support:
+
 | Parameter        | Description         
 | ------------- |-------------
 | width    | Width of the image
