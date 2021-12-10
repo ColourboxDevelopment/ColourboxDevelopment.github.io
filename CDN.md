@@ -115,3 +115,10 @@ AS for `output_format` we support
 - webp
 - jpeg
 
+**Example**
+
+https://cdn.skyfish.com/cdn-tutorial/12345.jpeg?width=800&output_format=webp
+
+This will give you the file resized to be 800 in the width and the format is webp. 
+
+
