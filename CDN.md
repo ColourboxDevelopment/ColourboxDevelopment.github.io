@@ -99,3 +99,19 @@ To delete a CDN link simply remove the file from the folder. Continuing with our
 curl -H "Authorization: CBX-SIMPLE-TOKEN Token=<token>" -XDELETE api.colourbox.com/media/42424242/folder/1337
 ```
 
+### Image manipulation on the fly
+Our CDN supports image manipulation on the fly. It works by appending query parameters to the generated CDN link. 
+We support:
+| Parameter        | Description         
+| ------------- |-------------
+| width    | Width of the image
+| height    | Height of the image
+| grayscale    | Make the image grayscale
+| output_format    | Format of the image
+
+Our system automatically maintains aspect ratio, so you should **either** specify `width` or `height`.
+AS for `output_format` we support
+
+- webp
+- jpeg
+
