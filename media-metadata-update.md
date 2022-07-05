@@ -1,7 +1,7 @@
 ---
 layout: page
-title: "Updating media metadata"
-permalink: /media-metadata-update/
+title: "Media metadata"
+permalink: /media-metadata/
 layout: default
 nav_order: 4
 ---
@@ -11,7 +11,7 @@ A media in Skyfish contains 6 pieces of metadata: title, byline (photographer),
 copyright, description, expiration_date and keywords.
 
 To update metadata the requests must be [authenticated](/authentication/) and the user must have
-WRITE access to the media being update.
+WRITE access to the media being updated.
 
 In general updates works by using the http verbs with a json encoded body.
 
@@ -22,7 +22,7 @@ POST /media/:id/metadata/title
 {"en":"The title of the image"}
 ```
 
-the "en" key in the map is the language the title is postet in. Currently the
+The "en" key in the map is the language the title is posted in. Currently the
 language used should always be en.
 
 ## Updating the byline / photographer
@@ -30,6 +30,7 @@ language used should always be en.
 POST /media/:id/metadata/byline
 "name of the photographer"
 ```
+
 Where the body is a json encoded string.
 
 ## Updating the copyright
@@ -37,6 +38,7 @@ Where the body is a json encoded string.
 POST /media/:id/metadata/copyright
 "All rights reserved"
 ```
+
 Where the body is a json encoded string.
 
 ## Updating the description
