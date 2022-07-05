@@ -22,6 +22,9 @@ POST /media/:id/metadata/title
 {"en":"The title of the image"}
 ```
 
+the "en" key in the map is the language the title is postet in. Currently the
+language used should always be en.
+
 ## Updating the byline / photographer
 ```json
 POST /media/:id/metadata/byline
