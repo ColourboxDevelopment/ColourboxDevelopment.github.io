@@ -70,4 +70,29 @@ The endpoint supports the following filtering options (all optional):
 | sort_by    | Specifies which field you would like to sort by, currently `name` and `created` are supported.
 | sort_order    | Can be either `asc`, or `desc`. Default is `asc`
 
+## Adding tags
+You can add multiple tags on a folder. When a tag is added to a folder, it is automatically inherited down to all the files that are located in the folder (and any subfolder underneath). When a file is moved into a folder where a folder tag set, that file automatically gets it. Similar, if the file is moved out of the folder, the tag will be removed again. 
+
+You modify folder tags in the following way:
+
+
+List all folder tags
+```
+curl -H "Authorization: CBX-SIMPLE-TOKEN Token=<token>"  https://api.colourbox.com/folder/:id/tags
+```
+
+Add folder tags `tag1` and `tag2`
+```
+curl -H "Authorization: CBX-SIMPLE-TOKEN Token=<token>"  -XPUT https://api.colourbox.com/folder/:id/tags -d'{["tag1", "tag2"]}'
+```
+
+Delete folder tags `tag1` and `tag2`
+```
+curl -H "Authorization: CBX-SIMPLE-TOKEN Token=<token>"  -XDELETE https://api.colourbox.com/folder/:id/tags -d'{["tag1", "tag2"]}'
+```
+
+Delete all folder tags
+```
+curl -H "Authorization: CBX-SIMPLE-TOKEN Token=<token>"  -XDELETE https://api.colourbox.com/folder/:id/tags/purge
+```
 
