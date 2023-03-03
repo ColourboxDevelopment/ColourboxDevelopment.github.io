@@ -83,12 +83,12 @@ curl -H "Authorization: CBX-SIMPLE-TOKEN Token=<token>"  https://api.colourbox.c
 
 Add folder tags `tag1` and `tag2`
 ```
-curl -H "Authorization: CBX-SIMPLE-TOKEN Token=<token>"  -XPUT https://api.colourbox.com/folder/:id/tags -d'{["tag1", "tag2"]}'
+curl -H "Authorization: CBX-SIMPLE-TOKEN Token=<token>"  -XPUT https://api.colourbox.com/folder/:id/tags -d'["tag1", "tag2"]'
 ```
 
 Delete folder tags `tag1` and `tag2`
 ```
-curl -H "Authorization: CBX-SIMPLE-TOKEN Token=<token>"  -XDELETE https://api.colourbox.com/folder/:id/tags -d'{["tag1", "tag2"]}'
+curl -H "Authorization: CBX-SIMPLE-TOKEN Token=<token>"  -XDELETE https://api.colourbox.com/folder/:id/tags -d'["tag1", "tag2"]'
 ```
 
 Delete all folder tags
