@@ -48,6 +48,7 @@ The output is on the form:
 ```
 
 The `permissions` key specify the access right your user has
+
 | name        | Description         
 | ------------- |-------------
 | READ    | User can see the folder
@@ -60,6 +61,7 @@ The `permissions` key specify the access right your user has
 
 
 The endpoint supports the following filtering options (all optional):
+
 | Parameter        | Description         
 | ------------- |-------------
 | q    | Query string matching against the folder name 
