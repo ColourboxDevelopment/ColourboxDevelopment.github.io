@@ -47,6 +47,18 @@ The output is on the form:
 ]  
 ```
 
+The `permissions` key specify the access right your user has
+| name        | Description         
+| ------------- |-------------
+| READ    | User can see the folder
+| ADMIN    | User can change the folder
+| WRITE    | Limit the list to folders with the parent ID specified
+| PERMANENT    | The folder is permanent (cannot be altered or deleted)
+| TRASH    | 	The folder is the user’s trashcan (implies PERMANENT)
+| PUBLIC | 	The folder is a public folder (implies PERMANENT)
+
+
+
 The endpoint supports the following filtering options (all optional):
 | Parameter        | Description         
 | ------------- |-------------
