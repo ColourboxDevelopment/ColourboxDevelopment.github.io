@@ -16,7 +16,7 @@ To list all folders in your company do:
 curl -H "Authorization: CBX-SIMPLE-TOKEN Token=<token>" https://api.colourbox.com/folder
 ```
 The output is on the form:
-```
+```json
 [
   {
     "id": 1891723,
@@ -138,3 +138,46 @@ Delete all folder tags
 curl -H "Authorization: CBX-SIMPLE-TOKEN Token=<token>"  -XDELETE https://api.colourbox.com/folder/:id/tags/purge
 ```
 
+### Downloading a folder as a zip file
+It is possible to download a folder via the API. To download a folder you first make a request to queue the folder for zipping. The API will give back a job ID that can be queried for status. Once the zip generation is done, you will get back a signed URL from where you can download. The user requesting the download will also get an email with the link. 
+
+To queue a folder for zipping do:
+```
+curl -H "Authorization: CBX-SIMPLE-TOKEN Token=<token>"  -XPOST https://api.colourbox.com/folder/:id/zip-file
+```
+
+You will get the following back
+```json
+{
+  "job_id":"9xahozLZnDp3JFcqBmbYQysIVrj6Ni",
+  "state":"PENDING",
+  "url":null,
+  "valid_until":null
+}
+```
+
+| Key        | Description         
+| ------------- |-------------
+| job_id    | The ID of the zip job generating. Use this to query the stauts
+| state    | The current status of the job
+| url    | Signed URL from where the zip can be downloaded from. When the zip job is not done this field will be `null`
+| valid_until    | A unix timestamp dictating when the above URL expires. When the zip job is not done this field will be `null`
+
+To query the status of the job do the following:
+```
+curl -H "Authorization: CBX-SIMPLE-TOKEN Token=<token>"  -XPOST https://api.colourbox.com/zip-file/:job_id
+```
+
+The output is the same format as ```https://api.colourbox.com/folder/:id/zip-file```
+
+Once the job is done you will get something like:
+```json
+{
+  "job_id":"9xahozLZnDp3JFcqBmbYQysIVrj6Ni",
+  "state":"DONE",
+  "url":"https:\/\/colourbox-zipfiles-prod.s3.eu-west-1.amazonaws.com\/tmp6yjgtuus.zip?.....",
+  "valid_until":1678233600
+}
+```
+
+Please note that we cache zip creation. So if you request a zip file  for a folder where there already exist a non-expired/invalidated zip file, we will return that zile back immediately. This means that the call to `https://api.colourbox.com/folder/:id/zip-file` might return back a URL right away. 
