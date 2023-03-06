@@ -20,7 +20,7 @@ The output is on the form:
 [
   {
     "id": 1891723,
-    "name": "Picture of cats,
+    "name": "Picture of cats",
     "parent": null,
     "cover_photo_id": null,
     "company_id": 445605,
