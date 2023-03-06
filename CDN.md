@@ -88,8 +88,8 @@ A great feature of the Skyfish CDN is that you can change the underlying file be
 Following our example from above, to update the link to point to a new file with unique media id of `202`, with the current media id being `101` and the cdn-folder
 
 **Note** that this is a `POST` call
-```
-curl -H "Authorization: CBX-SIMPLE-TOKEN Token=<token>" -XPOST api.colourbox.com/cdn/<company-id>/folder/<cdn-folder-id>/replace/101/with/202
+```json
+POST api.colourbox.com/cdn/<company-id>/folder/<cdn-folder-id>/replace/101/with/202
 ```
 
 ### Deleting CDN links
