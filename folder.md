@@ -104,18 +104,18 @@ POST https://api.colourbox.com/folder/110917
 ### Deleting a folder
 To delete a folder do the following
 ```json
-DELETE https://api.colourbox.com/folder/:id'
+DELETE https://api.colourbox.com/folder/:id
 ```
 
 To empty a folder, i.e., delete all files and subfolders but keep the folder itself do:
 ```json
-POST  https://api.colourbox.com/folder/:id/purge'
+POST  https://api.colourbox.com/folder/:id/purge
 ```
 
 When deleting a folder via our web interface, the folder it not deleted right away. Instead it is moved to the trashcan (which is automatically emptied after 30 days). 
 To do that via the API do:
 ```json
-POST https://api.colourbox.com/folder/:id/move_to_trash'
+POST https://api.colourbox.com/folder/:id/move_to_trash
 ```
 
 
@@ -131,7 +131,7 @@ GET https://api.colourbox.com/folder/:id/tags
 ```
 
 Add folder tags `tag1` and `tag2`
-```
+```json
 PUT https://api.colourbox.com/folder/:id/tags
 ["tag1", "tag2"]
 ```
