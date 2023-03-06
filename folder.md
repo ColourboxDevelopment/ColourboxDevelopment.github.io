@@ -110,6 +110,11 @@ To empty a folder, i.e., delete all files and subfolders but keep the folder its
 curl -H "Authorization: CBX-SIMPLE-TOKEN Token=<token>"  -XPOST https://api.colourbox.com/folder/:id/purge'
 ```
 
+When deleting a folder via our web interface, the folder it not deleted right away. Instead it is moved to the trashcan (which is automatically emptied after 30 days). 
+To do that via the API do:
+```
+curl -H "Authorization: CBX-SIMPLE-TOKEN Token=<token>"  -XPOST https://api.colourbox.com/folder/:id/move_to_trash'
+```
 
 
 ### Adding tags
