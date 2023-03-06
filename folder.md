@@ -13,7 +13,7 @@ The primary way of organizing media in the Skyfish API is through folders. Folde
 ### Fetching folders
 To list all folders in your company do:
 ```
-curl -H "Authorization: CBX-SIMPLE-TOKEN Token=<token>" https://api.colourbox.com/folder
+GET https://api.colourbox.com/folder
 ```
 The output is on the form:
 ```json
@@ -90,30 +90,32 @@ Similar, to update a folder you make a `POST` request to `https://api.colourbox.
 For the following examples assume the id of the folder is `110917` and the parent is `110220`. 
 
 To rename the folder to `Testing` do
-```
-curl -H "Authorization: CBX-SIMPLE-TOKEN Token=<token>"  -XPOST https://api.colourbox.com/folder/110917 -d'{"name": "Testing", "parent": 110220}'
+```json
+POST https://api.colourbox.com/folder/110917
+{"name": "Testing", "parent": 110220}
 ```
 
 Move the folder so it becomes a root folder
-```
-curl -H "Authorization: CBX-SIMPLE-TOKEN Token=<token>"  -XPOST https://api.colourbox.com/folder/110917 -d'{"name": "Testing", "parent": null}'
+```json
+POST https://api.colourbox.com/folder/110917
+{"name": "Testing", "parent": null}
 ```
 
 ### Deleting a folder
 To delete a folder do the following
-```
-curl -H "Authorization: CBX-SIMPLE-TOKEN Token=<token>"  -XDELETE https://api.colourbox.com/folder/:id'
+```json
+DELETE https://api.colourbox.com/folder/:id'
 ```
 
 To empty a folder, i.e., delete all files and subfolders but keep the folder itself do:
-```
-curl -H "Authorization: CBX-SIMPLE-TOKEN Token=<token>"  -XPOST https://api.colourbox.com/folder/:id/purge'
+```json
+POST  https://api.colourbox.com/folder/:id/purge'
 ```
 
 When deleting a folder via our web interface, the folder it not deleted right away. Instead it is moved to the trashcan (which is automatically emptied after 30 days). 
 To do that via the API do:
-```
-curl -H "Authorization: CBX-SIMPLE-TOKEN Token=<token>"  -XPOST https://api.colourbox.com/folder/:id/move_to_trash'
+```json
+POST https://api.colourbox.com/folder/:id/move_to_trash'
 ```
 
 
@@ -124,31 +126,33 @@ You modify folder tags in the following way:
 
 
 List all folder tags
-```
-curl -H "Authorization: CBX-SIMPLE-TOKEN Token=<token>"  https://api.colourbox.com/folder/:id/tags
+```json
+GET https://api.colourbox.com/folder/:id/tags
 ```
 
 Add folder tags `tag1` and `tag2`
 ```
-curl -H "Authorization: CBX-SIMPLE-TOKEN Token=<token>"  -XPUT https://api.colourbox.com/folder/:id/tags -d'["tag1", "tag2"]'
+PUT https://api.colourbox.com/folder/:id/tags
+["tag1", "tag2"]
 ```
 
 Delete folder tags `tag1` and `tag2`
-```
-curl -H "Authorization: CBX-SIMPLE-TOKEN Token=<token>"  -XDELETE https://api.colourbox.com/folder/:id/tags -d'["tag1", "tag2"]'
+```json
+DELETE https://api.colourbox.com/folder/:id/tags
+["tag1", "tag2"]
 ```
 
 Delete all folder tags
-```
-curl -H "Authorization: CBX-SIMPLE-TOKEN Token=<token>"  -XDELETE https://api.colourbox.com/folder/:id/tags/purge
+```json
+DELETE https://api.colourbox.com/folder/:id/tags/purge
 ```
 
 ### Downloading a folder as a zip file
 It is possible to download a folder via the API. To download a folder you first make a request to queue the folder for zipping. The API will give back a job ID that can be queried for status. Once the zip generation is done, you will get back a signed URL from where you can download. The user requesting the download will also get an email with the link. 
 
 To queue a folder for zipping do:
-```
-curl -H "Authorization: CBX-SIMPLE-TOKEN Token=<token>"  -XPOST https://api.colourbox.com/folder/:id/zip-file
+```json
+POST https://api.colourbox.com/folder/:id/zip-file
 ```
 
 You will get the following back
@@ -169,8 +173,8 @@ You will get the following back
 | valid_until    | A unix timestamp dictating when the above URL expires. When the zip job is not done this field will be `null`
 
 To query the status of the job do the following:
-```
-curl -H "Authorization: CBX-SIMPLE-TOKEN Token=<token>"  -XPOST https://api.colourbox.com/zip-file/:job_id
+```json
+POST https://api.colourbox.com/zip-file/:job_id
 ```
 
 The output is the same format as ```https://api.colourbox.com/folder/:id/zip-file```
