@@ -9,6 +9,8 @@ nav_order: 2
 # Folder
 The primary way of organizing media in the Skyfish API is through folders. Folders can easily be handled and modified through the Skyfish API.
 
+
+### Fetching folders
 To list all folders in your company do:
 ```
 curl -H "Authorization: CBX-SIMPLE-TOKEN Token=<token>" https://api.colourbox.com/folder
@@ -70,7 +72,30 @@ The endpoint supports the following filtering options (all optional):
 | sort_by    | Specifies which field you would like to sort by, currently `name` and `created` are supported.
 | sort_order    | Can be either `asc`, or `desc`. Default is `asc`
 
-## Adding tags
+
+### Updating folders
+To update a folder you make a `POST` request to `https://api.colourbox.com/folder/:id/`. In thw body you need to specify the following
+
+| Parameter        | Description         
+| ------------- |-------------
+| name    | Name of the folder
+| parent    | The id of the parent folder. Specify `null` to make it a root folder
+
+For the following examples assume the id of the folder is `110917` and the parent is `110220`. 
+
+To rename the folder to `Testing` do
+```
+curl -H "Authorization: CBX-SIMPLE-TOKEN Token=<token>"  -XPOST https://api.colourbox.com/folder/110917 -d'{"name": "Testing", "parent": 110220}'
+```
+
+Move the folder so it becomes a root folder
+```
+curl -H "Authorization: CBX-SIMPLE-TOKEN Token=<token>"  -XPOST https://api.colourbox.com/folder/110917 -d'{"name": "Testing", "parent": null}'
+```
+
+
+
+### Adding tags
 You can add multiple tags on a folder. When a tag is added to a folder, it is automatically inherited down to all the files that are located in the folder (and any subfolder underneath). When a file is moved into a folder where a folder tag set, that file automatically gets it. Similar, if the file is moved out of the folder, the tag will be removed again. 
 
 You modify folder tags in the following way:
