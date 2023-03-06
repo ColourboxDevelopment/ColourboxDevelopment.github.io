@@ -15,8 +15,8 @@ CDN needs to be configured be it can be used. Please have a look at this [Gettin
 The CDN feature is actually just a "magic" folder. When files are added to it, a CDN link will automatically be generated (and removed again if the file is deleted from the folder). 
 
 The first step is to figure out the id of the CDN folder. Note that a user can be in more than one company, so remember to specify the correct `company-id`. If in doubt what your company ID is, you can reach out to us on api@colourbox.com
-```
-curl -H "Authorization: CBX-SIMPLE-TOKEN Token=<token>" https://api.colourbox.com/cdn/<company-id>/company/aliases
+```json
+GET https://api.colourbox.com/cdn/<company-id>/company/aliases
 ```
 
 It will give you something like:
@@ -39,8 +39,8 @@ In this case the ID of the folder is `1337`. The `alias` is part of the URL of a
 ### Generating a CDN link
 Generating a CDN link for a file is as easy as to simply add it to the CDN folder found in the previos section. Assume you want to generate a link for the media with `unique_media_id` of `42424242`:
 
-```
-curl -H "Authorization: CBX-SIMPLE-TOKEN Token=<token>" -XPOST https://api.colourbox.com/media/42424242/folder/1337
+```json
+POST https://api.colourbox.com/media/42424242/folder/1337
 ```
 
 Once the file is placed in the folder, the file will be queued for CDN link creation. Often the link will be ready within 20 seconds. 
@@ -50,8 +50,8 @@ Once the file is placed in the folder, the file will be queued for CDN link crea
 ### Fetching the CDN link
 All search endpoints supports asking for `cdn_urls` as a return value. To get the CDN link for a specific file, specify the `unique_media_id` as a search paraemter and request `cdn_urls` as a return values:
 
-```
-curl -H "Authorization: CBX-SIMPLE-TOKEN Token=<token>" api.colourbox.com/search?unique_media_id=42424242&return_values=cdn_urls
+```json
+GET api.colourbox.com/search?unique_media_id=42424242&return_values=cdn_urls
 ```
 
 Response:
@@ -95,8 +95,8 @@ curl -H "Authorization: CBX-SIMPLE-TOKEN Token=<token>" -XPOST api.colourbox.com
 ### Deleting CDN links
 To delete a CDN link simply remove the file from the folder. Continuing with our example, removing the media with `unique_media_id` of `42424242`
 **Note** that this is a `DELETE` call. `1337` is the ID of our CDN folder. 
-```
-curl -H "Authorization: CBX-SIMPLE-TOKEN Token=<token>" -XDELETE api.colourbox.com/media/42424242/folder/1337
+```json
+DELETE api.colourbox.com/media/42424242/folder/1337
 ```
 
 ### Image manipulation on the fly
