@@ -73,13 +73,19 @@ The endpoint supports the following filtering options (all optional):
 | sort_order    | Can be either `asc`, or `desc`. Default is `asc`
 
 
-### Updating folders
-To update a folder you make a `POST` request to `https://api.colourbox.com/folder/:id/`. In thw body you need to specify the following
+### Creating a folder
+To create a folder you make a `POST` request to `https://api.colourbox.com/folder/`
+
+In the body you need to specify the following
 
 | Parameter        | Description         
 | ------------- |-------------
 | name    | Name of the folder
 | parent    | The id of the parent folder. Specify `null` to make it a root folder
+
+
+Similar, to update a folder you make a `POST` request to `https://api.colourbox.com/folder/:id/`. The structure of the body is the same as when creating
+
 
 For the following examples assume the id of the folder is `110917` and the parent is `110220`. 
 
@@ -91,6 +97,17 @@ curl -H "Authorization: CBX-SIMPLE-TOKEN Token=<token>"  -XPOST https://api.colo
 Move the folder so it becomes a root folder
 ```
 curl -H "Authorization: CBX-SIMPLE-TOKEN Token=<token>"  -XPOST https://api.colourbox.com/folder/110917 -d'{"name": "Testing", "parent": null}'
+```
+
+### Deleting a folder
+To delete a folder do the following
+```
+curl -H "Authorization: CBX-SIMPLE-TOKEN Token=<token>"  -XDELETE https://api.colourbox.com/folder/:id'
+```
+
+To empty a folder, i.e., delete all files and subfolders but keep the folder itself do:
+```
+curl -H "Authorization: CBX-SIMPLE-TOKEN Token=<token>"  -XPOST https://api.colourbox.com/folder/:id/purge'
 ```
 
 
