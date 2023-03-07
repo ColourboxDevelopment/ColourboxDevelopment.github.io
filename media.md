@@ -137,3 +137,10 @@ Removing all keywords from a media can be done with:
 ```json
 DELETE /media/:id/metadata/keywords
 ```
+
+## Media operations
+A file can be copied and moved around between different folders. Please note that when we say we copy a file to a different folder, a new copy of the file is **NOT** created. Instead, a pointer to the file is created in the folder it is copied into. in other words, the same file can be in mulitple folders. 
+
+### Copying a file into a folder
+
+
