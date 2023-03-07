@@ -94,6 +94,7 @@ To see the current expiraiton date
 ```json
 GET /media/:id/metadata/expiration_date
 { "expiration_date": "2023-06-15" }
+```
 
 ```json
 POST /media/:id/metadata/expiration_date
