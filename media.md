@@ -1,22 +1,22 @@
 ---
 layout: page
-title: "Media metadata"
-permalink: /media-metadata/
+title: "Media"
+permalink: /media/
 layout: default
 nav_order: 4
 ---
 
-# Media metadata update
+# Media
+
+
+## Metadata 
 A media in Skyfish contains 6 pieces of metadata: title, byline (photographer),
 copyright, description, expiration_date and keywords.
 
 To update metadata the requests must be [authenticated](/authentication/) and the user must have
-WRITE access to the media being updated.
-
-In general updates works by using the http verbs with a json encoded body.
+`WRITE` access to the media being updated.
 
 ## Updating the title
-
 ```json
 POST /media/:id/metadata/title
 {"en":"The title of the image"}
@@ -57,13 +57,13 @@ POST /media/:id/metadata/expiration_date
 ## Updating keywords
 For updating keywords, using delta updates is usually the easiest option.
 
-You can add keywords to a media by PUTing them:
+You can add keywords to a media with the following:
 ```json
 PUT /media/:id/metadata/keyword
 {"en": ["horse"]}
 ```
 
-You can DELETE them:
+To delete them you do:
 
 ```json
 DELETE /media/:id/metadata/keyword
