@@ -88,10 +88,21 @@ POST /media/:id/metadata/description
 {"en":"desc lol"}
 ```
 
-## Updating the expiration date
+### Updating the expiration date
+To see the current expiraiton date
+
+```json
+GET /media/:id/metadata/expiration_date
+{ "expiration_date": "2023-06-15" }
+
 ```json
 POST /media/:id/metadata/expiration_date
 {"expiration_year": "2023", "expiration_month": "4"}
+```
+
+To remove the expiration date, i.e. to unexpire the file:
+```json
+DELETE /media/:id/metadata/expiration_date
 ```
 
 ### Updating keywords
