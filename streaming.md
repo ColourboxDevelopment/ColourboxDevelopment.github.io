@@ -44,6 +44,7 @@ This is a public URL pointing to the "playlist" of the video you requested. Any 
 ## Playing the video
 To play the video you need a video player with support for HLS. 
 
+### Using the Skyfish player
 The easiest way is to use the Skyfish Video player (which is essentially a wrapped [Video.js](https://videojs.com/) player). It can be embedded on your website using an iframe. The player will also automatically add any subtitles you have added via the webinterface. 
 
 To generate the embed do the following:
