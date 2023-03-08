@@ -35,7 +35,7 @@ You should then query `/media/:media_id/metadata/stream_url` at a regular interv
 
 ```json
 {
-  "Stream": "https://video.skyfish.com/fde3e88d-79d6-4efa-858e-380113476546/AppleHLS1/stream-449912-53872201.m3u8"
+  "Stream": "https://video.skyfish.com/fde3e881-79d6-4efa-858e-380113476546/AppleHLS1/stream-1337-4242.m3u8"
 }
 ```
 
@@ -61,4 +61,12 @@ It will return something like:
 }
 ```
 
+It returns two fields: `iframe` which is embed code to use, and `fields` which is a list of placeholders than you need to replace. 
+
+Currently two placeholders are needed: `v` which is the url to the `m3u8` file returned by the API and `media` which is the ID of the media in question. 
+
+An example of a complete embed:
+```html
+<iframe src="https://player.skyfish.com/?v=https://video.skyfish.com/fde3e88d-79d6-4efa-858e-380113476546/AppleHLS1/stream-449912-53872201.m3u8&media=53872201" width="560" height="315" style="border: 0" title="Skyfish video" allow="fullscreen; accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen onLoad="!function(e){try{e.style.maxWidth='100%';var n=e.width/e.height;if(0<n){var t,d;(t=function(){var t,i=e.getBoundingClientRect();t=i.width<e.width?(i.width/n).toFixed(0)+'px':'none',d!==t&&(e.style.maxHeight=d=t)})(),window.addEventListener('resize',t)}}catch(t){console.log(t)}}(this)"></iframe>
+```
 
