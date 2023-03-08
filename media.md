@@ -166,7 +166,21 @@ POST /media/:id/folder/:folderId/move_to_trash
 ```
 
 ## Downloading a file
+To download a file do:
+```
+GET /media/:id/download_location
+```
 
+The output will look like:
+```json
+{
+  "url": "....",
+  "internal_elb_url": "....",
+  "method": "GET"
+}
+```
+
+`internal_elb_url` is used internally by Skyfish and should be ignored. `url` is a signed URL from where the file can be downloaded. Please note that the link expires, so the link should be consumed right away. 
 
 
 
