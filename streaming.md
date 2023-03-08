@@ -26,7 +26,7 @@ To request a video streaming URL do:
 POST media/:media_id/stream
 ```
 
-If the video is accepting for encoding it will return
+If the video is accepted for encoding it will return
 ```json
 {"Status":"Created"}
 ```
