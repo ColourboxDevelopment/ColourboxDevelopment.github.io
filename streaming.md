@@ -40,3 +40,25 @@ You should then query `/media/:media_id/metadata/stream_url` at a regular interv
 ```
 
 This is a public URL pointing to the "playlist" of the video you requested. Any video player capable of playing HLS can use it play the video. 
+
+## Playing the video
+To play the video you need a video player with support for HLS. 
+
+The easiest way is to use the Skyfish Video player (which is essentially a wrapped [Video.js](https://videojs.com/) player). It can be embedded on your website using an iframe. To generate the embed do the following:
+
+```json
+GET https://player.skyfish.com/iframe.json
+```
+
+It will return something like:
+```json
+{
+  "iframe": "<iframe src=\"https://player.skyfish.com/?v={v}&media={media}\" width=\"560\" height=\"315\" style=\"border: 0\" title=\"Skyfish video\" allow=\"fullscreen; accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen onLoad=\"!function(e){try{e.style.maxWidth='100%';var n=e.width/e.height;if(0<n){var t,d;(t=function(){var t,i=e.getBoundingClientRect();t=i.width<e.width?(i.width/n).toFixed(0)+'px':'none',d!==t&&(e.style.maxHeight=d=t)})(),window.addEventListener('resize',t)}}catch(t){console.log(t)}}(this)\"></iframe>",
+  "fields": [
+    "v",
+    "media"
+  ]
+}
+```
+
+
