@@ -20,3 +20,23 @@ GET /media/:media_id/metadata/stream_url
 
 If the endpoint returns 404 it means that no video streaming URL is available. It could either mean that a stream has never been requested, or that a stream has been requested but hasn't finished processing yet. 
 
+To request a video streaming URL do:
+
+```json
+POST media/:media_id/stream
+```
+
+If the video is accepting for encoding it will return
+```json
+{"Status":"Created"}
+```
+
+You should then query `/media/:media_id/metadata/stream_url` at a regular interval to see when the job is done. Once the processing is done, the user requesting the stream  gets an email and the output of the endpoint changes from a 404 to:
+
+```json
+{
+  "Stream": "https://video.skyfish.com/fde3e88d-79d6-4efa-858e-380113476546/AppleHLS1/stream-449912-53872201.m3u8"
+}
+```
+
+This is a public URL pointing to the "playlist" of the video you requested. Any video player capable of playing HLS can use it play the video. 
