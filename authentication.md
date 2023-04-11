@@ -6,55 +6,56 @@ layout: default
 nav_order: 2
 ---
 
-# Authentication
+# Authentication for the API
 
-To make calls to the API you need to get a token. This token is then used to authorize all subsequent calls to the API. 
+To make calls to the API, you need a token. This token authorizes all of your API calls. 
 
-If you don't have an API key or secret, please see "Getting Started" 
+If you don't have an API key or an API secret, please see "Getting Started"[should this be a link?] before proceeding. 
 
-## Getting a token
+## Getting an API token
 
-To get a token make a `POST` call to `/authenticate/userpasshmac` with the following parameters: 
+To get a token, make a `POST` call to `/authenticate/userpasshmac` with the following parameters: 
 
 | Parameter        | Description         
 | ------------- |-------------
-| username    | Username of user 
+| username    | Username of the user 
 | password    | Password for the user
 | key    | API Key
 | ts    | Current Unix timestamp 
-| hmac    | Calculated code (see below)
+| hmac    | Pre-calculated code (see below)
 
 
-`hmac` should be calculated in the following way: 
+`hmac` is a hash code that you calculate as follows: 
 
 ```
 HMAC-SHA1(secret, apiKey + ":" + ts)
 ```    
 
-Example of how it's done in PHP 
+For example, in PHP: 
 
 ```php
 hash_hmac('sha1', $apiKey . ":" . time(), $secret);
 ```
 
-### Example calculation
+### Example hash calculation
 
-Given that the API key is `company2key` , the secret is `company2secret` and the timestamp is `1429187979`, the computed hmac will be: `7e42196943a343e7494fc2636a3f7313edfcd81f`
+Assume that the API key is `company2key` , the secret is `company2secret` and the timestamp is `1429187979`.
 
+The computed hmac will therefore be calculated as: `7e42196943a343e7494fc2636a3f7313edfcd81f`
 
-If authentication is successful the API will return a token as well an expiration date for the token.
+If authentication is successful, the API will return a token, and an expiration date for the token.
 
 ## Using the token
-Once the token is obtained, it should be added to all subsequent calls in the Authorization Header.
+Once you obtain your token, you should add it to all subsequent calls in the Authorization Header.
 
 ```
 Authorization: CBX-SIMPLE-TOKEN Token=<token>
 ```
 
-Example using curl:
+For example, using curl:
 
 ```
 curl -H "Authorization: CBX-SIMPLE-TOKEN Token=e8ebf927234ec5dfc4cf66edbbe1382e886142f" https://api.colourbox.com/whoami
 ```
 
-Running the above curl command will give you back information about your user. 
+Running the above curl command will return information about your user.[Does this need further explaining in context?]
