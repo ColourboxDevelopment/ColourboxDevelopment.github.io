@@ -12,13 +12,15 @@ nav_order: 4
 You must configure the CDN before you can use it. Please make sure you have read this brief [Getting Started page](https://www.skyfish.com/help/cdn-links/set-up-domain) before you proceed.
 
 ## How the CDN feature works in Skyfish
-The CDN feature works using a 'magic' folder. We will call this the 'CDN folder' from hereon.
+The CDN feature works using a 'magic' folder. We will call this magic folder the _CDN folder_ from hereon.
 
-When a user chooses to publish a file via the CDN, Skyfish creates a new pointer to the chosen file in the CDN folder. Files may also simply be moved to the CDN folder, in which case the file's pointer moves from its original folder to the CDN folder.
+For an in-depth explanation of how files are stored in folders in Skyfish, read our guide to [Folders in Skyfish](/folder.md).
 
-Skyfish then generates a unique URL that can be used to access the file from outside Skyfish, via the CDN. The unique URL is called the file's _CDN Link_.
+To make a file accessible via the CDN, copy or move the file into the CDN folder.
 
-If a user chooses to stop making a file accessible via the CDN, Skyfish deletes the pointer to the file from the CDN folder, and deletes its CDN Link.
+Once the file is added to the CDN folder, Skyfish will automatically generate a unique URL that points to the file. This URL is called the file's _CDN Link_. A file's CDN Link makes it accessible from outside Skyfish, via the CDN. 
+
+To stop making a file accessible via the CDN, simply remove the file from the CDN folder. Skyfish will automatically delete the file's CDN Link.
 
 ## Using the Skyfish CDN from the API
 You must first find the ID of the CDN folder.
@@ -35,13 +37,13 @@ You will receive output that looks like this:
 
 ```json
 {
- "count": 1,
- "limit": 1,
- "aliases": [
+  "count": 1,
+  "limit": 1,
+  "aliases": [
     {
- "folder_id": 1337,
- "alias": "cdn-tutorial",
- "folder_name": "CDN"
+      "folder_id": 1337,
+      "alias": "cdn-tutorial",
+      "folder_name": "CDN"
     }
   ]
 }
@@ -88,18 +90,18 @@ The response will look like this:
 
 ```json
 {
- "response": {
- "media": [
+  "response": {
+    "media": [
       {
- "cdn_urls": [
- "https://cdn.skyfish.com/cdn-tutorial/<id>.<extension>"
+        "cdn_urls": [
+          "https://cdn.skyfish.com/cdn-tutorial/<id>.<extension>"
         ]
       }
     ],
- "hits": 1
+    "hits": 1
   },
- "media_count": 1,
- "media_offset": 0
+  "media_count": 1,
+  "media_offset": 0
 }
 ```
 

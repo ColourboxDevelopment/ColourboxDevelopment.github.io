@@ -10,7 +10,7 @@ nav_order: 2
 
 To make calls to the API, you need a token. This token authorizes all of your API calls. 
 
-If you don't have an API key or an API secret, please see "Getting Started"[should this be a link?] before proceeding. 
+If you don't have an API key or an API secret, please see ["Getting Started"](/index.md) before proceeding. 
 
 ## Getting an API token
 
@@ -22,7 +22,7 @@ To get a token, make a `POST` call to `/authenticate/userpasshmac` with the foll
 | password    | Password for the user
 | key    | API Key
 | ts    | Current Unix timestamp 
-| hmac    | Pre-calculated code (see below)
+| hmac    | Calculated code (to calculate this code, see below)
 
 
 `hmac` is a hash code that you calculate as follows: 
@@ -58,4 +58,4 @@ For example, using curl:
 curl -H "Authorization: CBX-SIMPLE-TOKEN Token=e8ebf927234ec5dfc4cf66edbbe1382e886142f" https://api.colourbox.com/whoami
 ```
 
-Running the above curl command will return information about your user.[Does this need further explaining in context?]
+Running the above curl command will return information about your user.

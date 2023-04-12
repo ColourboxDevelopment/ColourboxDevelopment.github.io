@@ -6,9 +6,16 @@ layout: default
 nav_order: 2
 ---
 
-# Folders in Skyfish
-Folders are the primary way to organize media in Skyfish. Folders can easily be handled and modified through the Skyfish API.
+# How folders and files work in Skyfish
+Folders are the primary way to organize files in Skyfish.
 
+When you upload a file to a folder in Skyfish, the following is what actually happens. The file is first uploaded and saved to Skyfish's cloud storage. Information about the file is then saved in the Skyfish database, and indexed by Skyfish's search engine. Lastly, a 'pointer' to the uploaded file is added to the chosen folder. This pointer represents the file as being 'stored in' the folder.
+
+When you 'copy a file' from one folder to another, Skyfish simply creates a new pointer to the file in the latter folder. Similarly, when you 'move a file' between folders, Skyfish simply moves the pointer from the old folder to the new one. 
+
+When you 'remove a file' from a folder, Skyfish deletes the pointer in the folder. When all pointers to a file are deleted from the folder structure, Skyfish automatically deletes the file.
+
+Folders can easily be handled and modified using the Skyfish API.
 
 ### How to fetch folders via the API
 To list all the Skyfish folders that exist in your company, execute:
@@ -55,7 +62,7 @@ The `permissions` key specifies the access rights that your users have:
 | ------------- |-------------
 | READ    | User can see the folder.
 | ADMIN    | User can change the folder.
-| WRITE    | Limit the list to folders with the parent ID specified. [Is this correct?]
+| WRITE    | User can upload to the folder.
 | PERMANENT    | The folder is permanent (it cannot be altered or deleted).
 | TRASH    | 	The folder is the user’s trashcan (implies it is PERMANENT).
 | PUBLIC | 	The folder is a Public Media Gallery folder (implies it is PERMANENT).
@@ -66,7 +73,7 @@ This endpoint supports the following filtering options (all optional):
 
 | Parameter        | Description         
 | ------------- |-------------
-| q    | Query the string matching the folder name. 
+| q    | Query string matching the folder name. 
 | id    | Limit the returned list to the folder that has the specified ID. Multiple IDs can be specified, seperated by "+".
 | parent    | Limit the list to folders with the parent folder ID specified.
 | sort_by    | Specifies which field you would like to sort by. Currently, `name` and `created` are supported.
@@ -111,7 +118,7 @@ To empty a folder, i.e. to delete all contained files and subfolders but keep th
 POST  https://api.colourbox.com/folder/:id/purge
 ```
 
-When deleting a folder via the Skyfish web UI, the folder is not deleted permanently. Instead, it is moved to the trashcan. Items in the trashcan for 30 days get permanently deleted.
+When users delete a folder via the Skyfish web UI, the folder is not deleted permanently. It is instead moved to the trashcan. If the folder is then left in the trashcan for more than 30 days, it is permanently deleted.
 
 To move a folder to the trashcan via the API:
 ```json

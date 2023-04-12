@@ -62,7 +62,7 @@ GET /media/:id/
 }
 ```
 
-Note that `keywords`, `title` and `description` are divded into languages. This is deliberate, to future-proof our API. For now, only English, with the language code `en`, should be used. This is the field that that Skyfish looks and searches for, currently. 
+Note that `keywords`, `title` and `description` are divided into languages. This is deliberate, to future-proof our API. For now, only English, with the language code `en`, should be used. This is the field that that Skyfish looks and searches for, currently. 
 
 ### Updating the media's title
 ```json
@@ -73,7 +73,7 @@ POST /media/:id/metadata/title
 The "en" key in the map is the language the title is posted in. Currently the
 language used should always be `en`.
 
-### Updating the media's byline (i.e. who created the media)
+### Updating the media's byline
 ```json
 POST /media/:id/metadata/byline
 "The name of the e.g. photographer"
@@ -132,10 +132,10 @@ To add or remove keywords from multiple media files, you can specify multiple fi
 PUT|DELETE /media/1,2,3/metadata/keyword
 {"en": ["horse"]}
 ```
-To set keywords you want a media file to have exclusively (i.e., with no others):
+To reset a file's keywords and replace them with a specified set:
 ```json
 POST /media/:id/metadata/keywords
-{"en": ["only","these"]}
+{"en": ["only","these","keywords"]}
 ```
 To remove all keywords:
 ```json
