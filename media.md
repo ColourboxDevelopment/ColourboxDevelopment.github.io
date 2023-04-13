@@ -6,17 +6,25 @@ layout: default
 nav_order: 3
 ---
 
-# Media
+# Media files
 
 
-## Information about a media 
-A media in Skyfish contains 6 pieces of metadata: title, byline (photographer),
-copyright, description, expiration_date and keywords.
+## Media metadata in Skyfish
+A media file in Skyfish contains 6 pieces of metadata. They are, by metadata field: 
 
-To update metadata the requests must be [authenticated](/authentication/) and the user must have
-`WRITE` access to the media being updated.
+1. title
+2. byline
+3. copyright
+4. description
+5. expiration_date
+6. keywords
 
-### Getting info for a media
+The 'byline' describes who the media's creator is, i.e. the photographer, videographer, or artist.
+
+To update media file metadata, the user must have `WRITE` access to the file being updated, and the update requests must be [authenticated](/authentication/).
+
+### Getting a media file's information
+Here is an example request for information, and what it could return:
 ```json
 GET /media/:id/
 {
@@ -54,124 +62,120 @@ GET /media/:id/
 }
 ```
 
-You might notice that `keywords`, `title` and `description` are divded into languages. This is to future proof our API. As for now, only `en` should be used. This is the field that that the system looks/searches for. 
+Note that `keywords`, `title` and `description` are divided into languages. This is deliberate, to future-proof our API. For now, only English, with the language code `en`, should be used. This is the field that that Skyfish looks and searches for, currently. 
 
-### Updating the title
+### Updating the media's title
 ```json
 POST /media/:id/metadata/title
 {"en":"The title of the image"}
 ```
 
 The "en" key in the map is the language the title is posted in. Currently the
-language used should always be en.
+language used should always be `en`.
 
-### Updating the byline / photographer
+### Updating the media's byline
 ```json
 POST /media/:id/metadata/byline
-"name of the photographer"
+"The name of the e.g. photographer"
 ```
 
 Where the body is a json encoded string.
 
-### Updating the copyright
+### Updating the copyright information
 ```json
 POST /media/:id/metadata/copyright
-"All rights reserved"
+"All rights reserved, etc."
 ```
 
-Where the body is a json encoded string.
+Here, the body is a json encoded string.
 
-### Updating the description
+### Updating the media's description
 
 ```json
 POST /media/:id/metadata/description
-{"en":"desc lol"}
+{"en":"A picture of a cat"}
 ```
 
-### Updating the expiration date
-To see the current expiraiton date
+### Updating the media's expiration date for use
+To see the current expiration date:
 
 ```json
 GET /media/:id/metadata/expiration_date
-{ "expiration_date": "2023-06-15" }
+{ "expiration_date": "2024-06-15" }
 ```
-
+To update the current expiration date:
 ```json
 POST /media/:id/metadata/expiration_date
-{"expiration_year": "2023", "expiration_month": "4"}
+{"expiration_year": "2024", "expiration_month": "4"}
 ```
 
-To remove the expiration date, i.e. to unexpire the file:
+To remove the expiration date, including to 'un-expire' files that are already expired:
 ```json
 DELETE /media/:id/metadata/expiration_date
 ```
 
 ### Updating keywords
-For updating keywords, using delta updates is usually the easiest option.
+Using delta updates is usually the easiest option.
 
-You can add keywords to a media with the following:
+You can add keywords with the following:
 ```json
 PUT /media/:id/metadata/keyword
 {"en": ["horse"]}
 ```
-
-To delete them you do:
-
+To delete keywords:
 ```json
 DELETE /media/:id/metadata/keyword
 {"en": ["horse"]}
 ```
-
-If you need to add / remove keywords from multiple media you can specify multiple medias with:
+To add or remove keywords from multiple media files, you can specify multiple files with:
 ```json
 PUT|DELETE /media/1,2,3/metadata/keyword
 {"en": ["horse"]}
 ```
-You can also set exactly the keywords you want the media to have with:
+To reset a file's keywords and replace them with a specified set:
 ```json
 POST /media/:id/metadata/keywords
-{"en": ["only","these"]}
+{"en": ["only","these","keywords"]}
 ```
-
-Removing all keywords from a media can be done with:
+To remove all keywords:
 ```json
 DELETE /media/:id/metadata/keywords
 ```
 
 ## Media operations
-A file can be copied and moved around between different folders. Please note that when we say we copy a file to a different folder, a new copy of the file is **NOT** created. Instead, a pointer to the file is created in the folder it is copied into. in other words, the same file can be in mulitple folders. 
+Files can be moved or copied between different folders in Skyfish. Please note: when users 'copy' a file to a different folder, a new copy of the file is **NOT** created. Instead, Skyfish creates a new pointer to the file in the folder that the file is 'copied' into. Therefore, the same file may be in mulitple folders. 
 
 ### Move and copy
-To copy a media into a folder do:
+To copy a media file into a folder:
 ```json
 POST /media/:media_id/folder/:folder_id
 ```
 
-To move a media into a folder do:
+To move a media file into a folder:
 ```json
 POST /media/:media_id/move
 {"from": 1337, "to": 1338}
 ```
-The above move operation would move the media from folder `1337` to `1338` 
+The above file-moving operation would move the media file from folder `1337` to `1338` 
 
 ### Deleting a file
-To delete a file from a folder you do:
+To delete a file from a folder:
 ```json
 DELETE /media/:id/folder/:folderId
 ```
 
-This will immediately delete the file. You can also chose to move it to the trash can instead (this is what our web interface do when deleting a file):
+This will immediately delete the file, permanently. You can also instead move the file to the trash can, which is what our web interface does when users delete files:
 ```json
 POST /media/:id/folder/:folderId/move_to_trash
 ```
 
 ## Downloading a file
-To download a file do:
+To download a file from Skyfish:
 ```
 GET /media/:id/download_location
 ```
 
-The output will look like:
+The output will look like this:
 ```json
 {
   "url": "....",
@@ -180,7 +184,6 @@ The output will look like:
 }
 ```
 
-`internal_elb_url` is used internally by Skyfish and should be ignored. `url` is a signed URL from where the file can be downloaded. Please note that the link expires, so the link should be consumed right away. 
-
+`internal_elb_url` is used internally by Skyfish and should therefore be ignored. `url` is a signed URL from where the file can be downloaded. Please note that the link will expire after a set time, so the file should be downloaded immediately. 
 
 

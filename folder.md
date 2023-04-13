@@ -6,16 +6,23 @@ layout: default
 nav_order: 2
 ---
 
-# Folder
-The primary way of organizing media in the Skyfish API is through folders. Folders can easily be handled and modified through the Skyfish API.
+# How folders and files work in Skyfish
+Folders are the primary way to organize files in Skyfish.
 
+When you upload a file to a folder in Skyfish, the following is what actually happens. The file is first uploaded and saved to Skyfish's cloud storage. Information about the file is then saved in the Skyfish database, and indexed by Skyfish's search engine. Lastly, a 'pointer' to the uploaded file is added to the chosen folder. This pointer represents the file as being 'stored in' the folder.
 
-### Fetching folders
-To list all folders in your company do:
+When you 'copy a file' from one folder to another, Skyfish simply creates a new pointer to the file in the latter folder. Similarly, when you 'move a file' between folders, Skyfish simply moves the pointer from the old folder to the new one. 
+
+When you 'remove a file' from a folder, Skyfish deletes the pointer in the folder. When all pointers to a file are deleted from the folder structure, Skyfish automatically deletes the file.
+
+Folders can easily be handled and modified using the Skyfish API.
+
+### How to fetch folders via the API
+To list all the Skyfish folders that exist in your company, execute:
 ```
 GET https://api.colourbox.com/folder
 ```
-The output is on the form:
+The output will resemble something like the following:
 ```json
 [
   {
@@ -49,113 +56,113 @@ The output is on the form:
 ]  
 ```
 
-The `permissions` key specify the access right your user has
+The `permissions` key specifies the access rights that your users have:
 
-| name        | Description         
+| Name        | Description         
 | ------------- |-------------
-| READ    | User can see the folder
-| ADMIN    | User can change the folder
-| WRITE    | Limit the list to folders with the parent ID specified
-| PERMANENT    | The folder is permanent (cannot be altered or deleted)
-| TRASH    | 	The folder is the user’s trashcan (implies PERMANENT)
-| PUBLIC | 	The folder is a public folder (implies PERMANENT)
+| READ    | User can see the folder.
+| ADMIN    | User can change the folder.
+| WRITE    | User can upload to the folder.
+| PERMANENT    | The folder is permanent (it cannot be altered or deleted).
+| TRASH    | 	The folder is the user’s trashcan (implies it is PERMANENT).
+| PUBLIC | 	The folder is a Public Media Gallery folder (implies it is PERMANENT).
 
 
 
-The endpoint supports the following filtering options (all optional):
+This endpoint supports the following filtering options (all optional):
 
 | Parameter        | Description         
 | ------------- |-------------
-| q    | Query string matching against the folder name 
-| id    | Limit the list to the folder that has the given ID. Multiple IDs can be given seperated by "+"
-| parent    | Limit the list to folders with the parent ID specified
-| sort_by    | Specifies which field you would like to sort by, currently `name` and `created` are supported.
-| sort_order    | Can be either `asc`, or `desc`. Default is `asc`
+| q    | Query string matching the folder name. 
+| id    | Limit the returned list to the folder that has the specified ID. Multiple IDs can be specified, seperated by "+".
+| parent    | Limit the list to folders with the parent folder ID specified.
+| sort_by    | Specifies which field you would like to sort by. Currently, `name` and `created` are supported.
+| sort_order    | Can be either `asc` or `desc`. Default is `asc`.
 
 
 ### Creating a folder
-To create a folder you make a `POST` request to `https://api.colourbox.com/folder/`
+To create a folder, make a `POST` request to `https://api.colourbox.com/folder/`
 
-In the body you need to specify the following
+In the request's body, you must specify the following:
 
 | Parameter        | Description         
 | ------------- |-------------
-| name    | Name of the folder
-| parent    | The id of the parent folder. Specify `null` to make it a root folder
+| name    | The name of the folder.
+| parent    | The id of the parent folder. To make your created folder a root folder, use `null` .
 
 
-Similar, to update a folder you make a `POST` request to `https://api.colourbox.com/folder/:id/`. The structure of the body is the same as when creating
+Similar, to update a folder, make a `POST` request to `https://api.colourbox.com/folder/:id/`. The structure of the request's body is the same as when creating a folder.
 
+Some examples follow. Assume for all of them that the folder ID is `110917` and the parent folder ID is `110220`. 
 
-For the following examples assume the id of the folder is `110917` and the parent is `110220`. 
-
-To rename the folder to `Testing` do
+To rename the folder to `Testing`, execute:
 ```json
 POST https://api.colourbox.com/folder/110917
 {"name": "Testing", "parent": 110220}
 ```
 
-Move the folder so it becomes a root folder
+To move the folder, so that it becomes a root folder:
 ```json
 POST https://api.colourbox.com/folder/110917
 {"name": "Testing", "parent": null}
 ```
 
 ### Deleting a folder
-To delete a folder do the following
+To delete a folder, execute the following:
 ```json
 DELETE https://api.colourbox.com/folder/:id
 ```
 
-To empty a folder, i.e., delete all files and subfolders but keep the folder itself do:
+To empty a folder, i.e. to delete all contained files and subfolders but keep the folder itself:
 ```json
 POST  https://api.colourbox.com/folder/:id/purge
 ```
 
-When deleting a folder via our web interface, the folder it not deleted right away. Instead it is moved to the trashcan (which is automatically emptied after 30 days). 
-To do that via the API do:
+When users delete a folder via the Skyfish web UI, the folder is not deleted permanently. It is instead moved to the trashcan. If the folder is then left in the trashcan for more than 30 days, it is permanently deleted.
+
+To move a folder to the trashcan via the API:
 ```json
 POST https://api.colourbox.com/folder/:id/move_to_trash
 ```
 
 
-### Adding tags
-You can add multiple tags on a folder. When a tag is added to a folder, it is automatically inherited down to all the files that are located in the folder (and any subfolder underneath). When a file is moved into a folder where a folder tag set, that file automatically gets it. Similar, if the file is moved out of the folder, the tag will be removed again. 
+### Adding tags to folders
+Folders may have multiple tags added to them. When a tag is added to a folder, the tag is automatically inherited by all the files that are located in the folder, and in any subfolder therein. When a file is moved into a folder that already has a tag added to it, that file automatically inherits the tag, too. Similarly, if the file is moved out of the folder, the inherited tag will be removed from the file. 
 
-You modify folder tags in the following way:
+Modify these 'Folder Tags' in the following way:
 
 
-List all folder tags
+List all Folder Tags:
 ```json
 GET https://api.colourbox.com/folder/:id/tags
 ```
 
-Add folder tags `tag1` and `tag2`
+Add tags `tag1` and `tag2` to a folder:
 ```json
 PUT https://api.colourbox.com/folder/:id/tags
 ["tag1", "tag2"]
 ```
 
-Delete folder tags `tag1` and `tag2`
+Delete the Folder Tags `tag1` and `tag2`:
 ```json
 DELETE https://api.colourbox.com/folder/:id/tags
 ["tag1", "tag2"]
 ```
 
-Delete all folder tags
+Delete all Folder Tags:
 ```json
 DELETE https://api.colourbox.com/folder/:id/tags/purge
 ```
 
-### Downloading a folder as a zip file
-It is possible to download a folder via the API. To download a folder you first make a request to queue the folder for zipping. The API will give back a job ID that can be queried for status. Once the zip generation is done, you will get back a signed URL from where you can download. The user requesting the download will also get an email with the link. 
+### Downloading an entire folder as a .zip file
+You can download a folder via the API. First, make a request to queue the folder for zipping. The API will return a job ID that can be queried for a job status report. Once the folder is zipped, you will receive a signed URL to download the .zip from. The user requesting the download will also get an email that contains the download URL. 
 
-To queue a folder for zipping do:
+To queue a folder for zipping:
 ```json
 POST https://api.colourbox.com/folder/:id/zip-file
 ```
 
-You will get the following back
+You will receive something resembling the following:
 ```json
 {
   "job_id":"9xahozLZnDp3JFcqBmbYQysIVrj6Ni",
@@ -167,19 +174,19 @@ You will get the following back
 
 | Key        | Description         
 | ------------- |-------------
-| job_id    | The ID of the zip job generating. Use this to query the stauts
-| state    | The current status of the job
-| url    | Signed URL from where the zip can be downloaded from. When the zip job is not done this field will be `null`
-| valid_until    | A unix timestamp dictating when the above URL expires. When the zip job is not done this field will be `null`
+| job_id    | The ID of the zipping job. Use this to query the job status.
+| state    | The current status of the zipping job.
+| url    | The signed URL to download the .zip from. Until the zip job is done, this field will be `null`.
+| valid_until    | A unix timestamp dictating when the above URL expires. Until the zip job is done, this field will be `null`.
 
-To query the status of the job do the following:
+To query the status of the zip job:
 ```json
 POST https://api.colourbox.com/zip-file/:job_id
 ```
 
-The output is the same format as ```https://api.colourbox.com/folder/:id/zip-file```
+The output is the same format as: ```https://api.colourbox.com/folder/:id/zip-file```
 
-Once the job is done you will get something like:
+When the job is done, you will receive output that resembles:
 ```json
 {
   "job_id":"9xahozLZnDp3JFcqBmbYQysIVrj6Ni",
@@ -189,4 +196,4 @@ Once the job is done you will get something like:
 }
 ```
 
-Please note that we cache zip creation. So if you request a zip file  for a folder where there already exist a non-expired/invalidated zip file, we will return that zile back immediately. This means that the call to `https://api.colourbox.com/folder/:id/zip-file` might return back a URL right away. 
+Please note: We cache zip creation. Therefore, if you request a .zip file for a folder, but there already exists a non-expired/non-invalidated .zip file, we will return the existing .zip file. This means that your call to `https://api.colourbox.com/folder/:id/zip-file` may return a download URL immediately. 
