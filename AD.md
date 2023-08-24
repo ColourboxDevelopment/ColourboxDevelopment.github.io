@@ -71,3 +71,15 @@ To setup a default AD Security Group:
 
 1. In step 2 you have aligned one or more AD Security Groups with Skyfish. **Find** the **AD Security Group** you want to be the default.
 2. **Send an email** to info@colourbox.com with the **AD Security Group** and ask them to set it as the default AD Security Group in your integration.
+
+### Got groups [] but no groups map to access in Skyfish.
+
+This error comes in one of two forms:
+
+#### Got groups []
+
+If the square brackets are empty, **we did not receive any security groups from your AD**. If we don't receive any AD security groups, we cannot give any access to the user and the login attempt is thus rejected. Make sure you have gone through **Step 1** to correctly setup your AD.
+
+#### Got groups [7ea05961-86f4-45cd-8134-e3ffb9b4c22b]
+
+If you see groups in the brackets, **the AD security groups we are getting does not map to any access in Skyfish**. Make sure you go through **Step 2** to correctly map your AD security groups to access in Skyfish.
