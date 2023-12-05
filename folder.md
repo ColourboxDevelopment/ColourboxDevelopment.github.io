@@ -181,7 +181,7 @@ You will receive something resembling the following:
 
 To query the status of the zip job:
 ```json
-POST https://api.colourbox.com/zip-file/:job_id
+GET https://api.colourbox.com/zip-file/:job_id
 ```
 
 The output is the same format as: ```https://api.colourbox.com/folder/:id/zip-file```
