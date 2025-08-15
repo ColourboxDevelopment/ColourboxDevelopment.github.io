@@ -16,16 +16,16 @@ nav_order: 6
 2. Go to **Entra ID**.
 3. In the top menu, click Add and choose **App registration**.
 5. In the textbox titled *Name*, enter a fitting name, e.g. *Skyfish Login*.
-6. Leave the option as **Accounts in this organizational directory only (Default Directory only - Single tenant)**
+6. Leave the option as **Accounts in this organizational directory only (Default Directory only - Single tenant)**.
 7. At the bottom of the form, fill in the *Redirect URI* textbox with: `https://auth.colourbox.com/saml2/idpresponse`, leave the drop-down box to the left set as *Web*.
 8. Click **Register** to save the registration.
-9. Navigate to **Manifest** and look into the editor
-10. Navigate to where it says **"knownClientApplications": [],**  add this line of code on the next row: **"requestedAccessTokenVersion": 2,**. (If this line already exist, instead change its value from **Null** to **2**)
+9. Navigate to **Manifest** and look into the editor.
+10. Navigate to where it says **"knownClientApplications": [],**  add this line of code on the next row: **"requestedAccessTokenVersion": 2,**. (If this line already exist, instead change its value from **Null** to **2**).
 11. Now save the changes.
 12. Navigate back to **Overview** in the left menu.
 13. Click **Add an Application ID URI**.
-14. Click **Add** next to Application ID URI
-15.  Fill in the textbox that appears titled *Application ID URI* with: `urn:amazon:cognito:sp:eu-west-1_95snzYZYv`
+14. Click **Add** next to Application ID URI.
+15.  Fill in the textbox that appears titled *Application ID URI* with: `urn:amazon:cognito:sp:eu-west-1_95snzYZYv`.
 16. Click **Save**.
 17. In the side menu, click **Token configuration**.
 18. Click **Add groups** claim. A submenu appears.
@@ -44,14 +44,14 @@ Step 1 is now complete. Continue with Step 2.
 1. Visit Skyfish’s [Settings page for AD Integration](https://www.skyfish.com/account/ad-integration).
 2. Go to **Groups in Skyfish**.
 3. Click Add new **AD Security Group**.
-4. Visit [Entra ID Groups]([https://portal.azure.com/](https://portal.azure.com/#view/Microsoft_AAD_IAM/GroupsManagementMenuBlade/~/Overview)). (If the link does not work, navigate to Entra ID in Azure Portal and open groups)
-6. Select a group in your Active Directory that you want to align with a Skyfish Group.(Usually security groups)
+4. Visit [Entra ID Groups]([https://portal.azure.com/](https://portal.azure.com/#view/Microsoft_AAD_IAM/GroupsManagementMenuBlade/~/Overview)). (If the link does not work, navigate to Entra ID in Azure Portal and open groups).
+6. Select a group in your Active Directory that you want to align with a Skyfish Group.(Usually security groups).
 7. **Copy** the group’s **Object ID**.
 8. Go back to Skyfish’s **Groups in Skyfish** settings page.
 9. In the textbox titled *AD Security Group ID*, **paste** the **Object ID**.
 10. Select the **Skyfish User Role** the group’s users will have.
 11. Select the wanted ekstra Skyfish features the user should have access to.
-12. If the user has Colourbox access, the user role can be set here(Optional)
+12. If the user has Colourbox access, the user role can be set here(Optional).
 13. Assign the group to one or more **Skyfish Groups**: create and/or use existing ones.
 14. Click **Save access rights**, to complete aligning the Active Directory group and
     Skyfish Group.
