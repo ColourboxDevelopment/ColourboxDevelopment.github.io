@@ -44,7 +44,7 @@ Step 1 is now complete. Continue with Step 2.
 1. Visit Skyfish’s [Settings page for AD Integration](https://www.skyfish.com/account/ad-integration).
 2. Go to **Groups in Skyfish**.
 3. Click Add new **AD Security Group**.
-4. Visit [Entra ID Groups]([https://portal.azure.com/](https://portal.azure.com/#view/Microsoft_AAD_IAM/GroupsManagementMenuBlade/~/Overview)). (If the link does not work, navigate to Entra ID in Azure Portal and open groups).
+4. Visit [Entra ID Groups](https://portal.azure.com/#view/Microsoft_AAD_IAM/GroupsManagementMenuBlade/~/Overview). (If the link does not work, navigate to Entra ID in Azure Portal and open groups).
 6. Select a group in your Active Directory that you want to align with a Skyfish Group.(Usually security groups).
 7. **Copy** the group’s **Object ID**.
 8. Go back to Skyfish’s **Groups in Skyfish** settings page.
