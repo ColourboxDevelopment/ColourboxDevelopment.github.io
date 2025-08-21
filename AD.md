@@ -29,7 +29,7 @@ nav_order: 6
 16. Click **Save**.
 17. In the side menu, click **Token configuration**.
 18. Click **Add groups** claim. A submenu appears.
-19. Checkmark **Security groups**.
+19. Checkmark **Security groups** and **Groups assigned to the application**.
 20. Click **Save**.
 21. In the side menu, click **Overview**.
 22. Click **Endpoints**. A submenu appears.
