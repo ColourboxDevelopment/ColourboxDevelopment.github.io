@@ -47,7 +47,6 @@ ________________________________________________________________________________
 * Select users and groups
 * Choose add group 
 * Now select the Skyfish affiliated groups you want assigned to the Skyfish application
-________________________________________________________________________________________
 
 **Step 1 is now complete. Continue with Step 2.**
 
