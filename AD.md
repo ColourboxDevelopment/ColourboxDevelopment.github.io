@@ -8,7 +8,7 @@ nav_order: 6
 
 By default AD will be using Controlled Group version, where assigned groups is used to define which folders permissions exist in Skyfish.
 
-If you only need AD to permit access via one default group, that permits a set of folder permissions, refer to the section here: https://developer.skyfish.com/ad-login/#setup-a-default-ad-security-group
+If you only need AD to permit access via one default group, that permits a set of folder permissions, refer to the section here: [Default AD Group](####Setup-a-default-AD-Security-Group)
 
 
 
