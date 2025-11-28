@@ -37,6 +37,16 @@ nav_order: 6
 24. Visit Skyfish’s **Settings** page for **AD Integration**.
 25. **Paste** the **Federation Metadata Document URL** into the input field titled *Federation Metadata Document URL*.
 
+
+## If you are using an Enterprise app remember to assign the needed Skyfish groups to the application.
+
+* Enter Enterprise apps
+* Select the Skyfish application
+* Select users and groups
+* Choose add group 
+* Now select the Skyfish affiliated groups you want assigned to the Skyfish application
+
+
 Step 1 is now complete. Continue with Step 2.
 
 ### Step 2: Align your Active Directory groups with your Skyfish Groups.
