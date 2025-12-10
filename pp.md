@@ -20,6 +20,8 @@ In the left menu, navigate to Settings → Integrated Apps (it may be necessary 
 ### 3. Add a new add-in:
 Click Get Apps, then search for and select Skyfish Connector for PowerPoint from the Office Store.
 
+(If you want to add it via a custom apps, you can use the [Skyfish Manifest](https://office.skyfish.com/manifest.xml))
+
 ### 4. Assign users or groups:
 Choose which users, groups, or devices should receive the add-in.
 
